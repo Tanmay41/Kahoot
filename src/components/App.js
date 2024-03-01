@@ -5,14 +5,14 @@ import Home from "./Home";
 
 function App() {
 	return (
-		<div>
-			<Header />
-			<BrowserRouter>
+		<BrowserRouter>
+			<div>
+				<Header />
 				<Routes>
 					<Route index element={<Home />} />
 				</Routes>
-			</BrowserRouter>
-		</div>
+			</div>
+		</BrowserRouter>
 	);
 }
 
