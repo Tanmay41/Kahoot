@@ -1,8 +1,10 @@
 import React from "react";
 
-function QuizCard({ Title, Description }) {
+function QuizCard({ id, Title, Description }) {
+	const action = `/quiz/${id}`;
+
 	return (
-		<div className="lg:w-4/6 lg:mx-auto">
+		<form className="lg:w-4/6 lg:mx-auto" action={action}>
 			<h1 className="text-3xl font-bold">{Title}</h1>
 			<p className="mt-5 text-base leading-6 text-gray-500 dark:text-gray-400">
 				{Description}
@@ -21,7 +23,7 @@ function QuizCard({ Title, Description }) {
 					<path d="M5 12h14M12 5l7 7-7 7"></path>
 				</svg>
 			</button>
-		</div>
+		</form>
 	);
 }
 
