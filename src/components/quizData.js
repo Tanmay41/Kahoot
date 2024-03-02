@@ -7,11 +7,13 @@ const quizData = [
 			{
 				Question: "What is the capital of Australia?",
 				Answer: ["Sydney", "Canberra", "Melbourne", "Brisbane"],
+				CorrectAnswer: 1,
 			},
 			{
 				Question:
 					"Which planet in our solar system is closest to the sun?",
 				Answer: ["Mercury", "Mars", "Venus", "Sun"],
+				CorrectAnswer: 3,
 			},
 		],
 	},
@@ -24,10 +26,12 @@ const quizData = [
 			{
 				Question: "How many moons does Jupiter have?",
 				Answer: ["12", "53", "79", "31"],
+				CorrectAnswer: 0,
 			},
 			{
 				Question: "Which is the largest planet in our solar system?",
 				Answer: ["Jupiter", "Saturn", "Earth", "Mars"],
+				CorrectAnswer: 0,
 			},
 		],
 	},
