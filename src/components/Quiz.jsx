@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import Timer from "./Timer";
 import quizData from "./quizData";
@@ -10,6 +10,7 @@ function Quiz() {
 
 	let quizToPresent = {};
 	for (let i = 0; i <= quizData.length - 1; i++) {
+		// eslint-disable-next-line
 		if (quizData[i].id == quizID) {
 			quizToPresent = quizData[i];
 			break;
@@ -73,8 +74,11 @@ function Quiz() {
 								{quizToPresent.Title}
 							</h1>
 						</div>
-						<div className="w-full flex justify-center">
-							<Timer />
+						<div
+							id="timerContainer"
+							className="w-full flex justify-center"
+						>
+							<Timer onComplete={nextQuestion} />
 						</div>
 					</div>
 
@@ -117,10 +121,9 @@ function Quiz() {
 					<div className="mx-8 my-5 h-auto w-full flex justify-normal items-center">
 						<h1 className="text-3xl font-bold">
 							You have scored {marks}/
-							{quizToPresent.Questions.length}
-							<p className="text-sm text-gray-400">
-								You really need to touch you text books (trust
-								me)
+							{quizToPresent.Questions.length * 5}
+							<p id="comment" className="text-sm text-gray-400">
+								<a href="/">Click Here to go to home page</a>
 							</p>
 						</h1>
 					</div>

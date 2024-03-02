@@ -16,7 +16,7 @@ function Timer({ onComplete }) {
 			setProgress(Math.min(newProgress, 100));
 
 			if (newProgress < 40) {
-				setColor("#2db7f5");
+				setColor("lightgreen");
 			} else if (newProgress >= 40 && newProgress <= 60) {
 				setColor("orange");
 			} else {
@@ -25,6 +25,8 @@ function Timer({ onComplete }) {
 
 			if (newProgress >= 100 && onComplete) {
 				onComplete();
+				setStartTime(Date.now());
+				setProgress(0);
 			}
 		}, 1000);
 
@@ -37,6 +39,8 @@ function Timer({ onComplete }) {
 			percent={progress}
 			strokeWidth={10}
 			strokeColor={color}
+			trailWidth={7}
+			trailColor="#D3D3D3"
 		/>
 	);
 }

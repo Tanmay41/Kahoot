@@ -13,7 +13,7 @@ const quizData = [
 				Question:
 					"Which planet in our solar system is closest to the sun?",
 				Answer: ["Mercury", "Mars", "Venus", "Sun"],
-				CorrectAnswer: 3,
+				CorrectAnswer: 0,
 			},
 		],
 	},
@@ -43,6 +43,7 @@ const quizData = [
 			{
 				Question: "What is the capital of Japan?",
 				Answer: ["Tokyo", "Seoul", "Beijing", "Bangkok"],
+				CorrectAnswer: 0,
 			},
 			{
 				Question: "Who developed the theory of relativity?",
@@ -52,6 +53,7 @@ const quizData = [
 					"Galileo Galilei",
 					"Stephen Hawking",
 				],
+				CorrectAnswer: 0,
 			},
 		],
 	},
