@@ -78,7 +78,10 @@ function Quiz() {
 							id="timerContainer"
 							className="w-full flex justify-center"
 						>
-							<Timer onComplete={nextQuestion} />
+							<Timer
+								onComplete={nextQuestion}
+								trigger={questionIndex}
+							/>
 						</div>
 					</div>
 

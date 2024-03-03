@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { Circle } from "rc-progress";
 
-function Timer({ onComplete }) {
+function Timer({ onComplete, trigger }) {
 	const [startTime, setStartTime] = useState(Date.now());
 	const [progress, setProgress] = useState(0);
 	const [color, setColor] = useState("#2db7f5");
 
 	useEffect(() => {
+		setStartTime(Date.now());
+		setProgress(0);
+
 		const intervalId = setInterval(() => {
 			const elapsedTime = (Date.now() - startTime) / 1000;
 
@@ -31,7 +34,7 @@ function Timer({ onComplete }) {
 		}, 1000);
 
 		return () => clearInterval(intervalId);
-	}, [startTime, onComplete]);
+	}, [startTime, onComplete, trigger]);
 
 	return (
 		<Circle
