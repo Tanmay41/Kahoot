@@ -38,13 +38,9 @@ function Quiz() {
 	};
 
 	function showSummary() {
-		console.log(timeTaken);
-
 		setSummary(
 			timeTaken.map((item, index) => {
-				const data = `${item} on Question no. ${index + 1}`;
-
-				console.log(data);
+				const data = `You took ${item}s on Question no. ${index + 1}`;
 
 				return <li key={index}>{data}</li>;
 			})
