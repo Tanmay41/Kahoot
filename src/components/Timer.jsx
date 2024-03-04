@@ -5,18 +5,22 @@ function Timer({ onComplete, trigger }) {
 	const [startTime, setStartTime] = useState(Date.now());
 	const [progress, setProgress] = useState(0);
 	const [color, setColor] = useState("#2db7f5");
+	const [elapsedTime, setElapsedTime] = useState(0);
+
+	const totalSeconds = 30; // Define totalSeconds here
 
 	useEffect(() => {
 		setStartTime(Date.now());
 		setProgress(0);
 
 		const intervalId = setInterval(() => {
-			const elapsedTime = (Date.now() - startTime) / 1000;
+			const currentTime = Date.now();
+			const elapsedTimeInSeconds = (currentTime - startTime) / 1000;
 
-			const totalSeconds = 30;
-			const newProgress = (elapsedTime / totalSeconds) * 100;
+			const newProgress = (elapsedTimeInSeconds / totalSeconds) * 100;
 
 			setProgress(Math.min(newProgress, 100));
+			setElapsedTime(Math.floor(elapsedTimeInSeconds));
 
 			if (newProgress < 40) {
 				setColor("lightgreen");
@@ -28,23 +32,28 @@ function Timer({ onComplete, trigger }) {
 
 			if (newProgress >= 100 && onComplete) {
 				onComplete();
-				setStartTime(Date.now());
+				setStartTime(currentTime);
 				setProgress(0);
 			}
 		}, 1000);
 
 		return () => clearInterval(intervalId);
-	}, [startTime, onComplete, trigger]);
+	}, [startTime, onComplete, trigger, totalSeconds]);
 
 	return (
-		<Circle
-			className="timer-circle h-[100px] w-[100px]"
-			percent={progress}
-			strokeWidth={10}
-			strokeColor={color}
-			trailWidth={7}
-			trailColor="#D3D3D3"
-		/>
+		<div>
+			<Circle
+				className="timer-circle h-[100px] w-[100px]"
+				percent={progress}
+				strokeWidth={10}
+				strokeColor={color}
+				trailWidth={7}
+				trailColor="#D3D3D3"
+			/>
+			<p>
+				Time left: {totalSeconds - elapsedTime}s / {totalSeconds}s
+			</p>
+		</div>
 	);
 }
 

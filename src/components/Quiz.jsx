@@ -114,9 +114,6 @@ function Quiz() {
 						<div className="flex w-full items-center">
 							<h1 className="mx-8 text-4xl font-bold">Results</h1>
 						</div>
-						<div className="flex w-full justify-center">
-							<Timer />
-						</div>
 					</div>
 
 					<hr className="mx-auto my-3 h-[2px] w-[90%] bg-gray-500" />
