@@ -52,6 +52,13 @@ function Timer({ onComplete, trigger }) {
 			/>
 			<p>
 				Time left: {totalSeconds - elapsedTime}s / {totalSeconds}s
+				<input
+					id="elapsedTime"
+					type="text"
+					hidden
+					value={elapsedTime}
+					readOnly
+				/>
 			</p>
 		</div>
 	);

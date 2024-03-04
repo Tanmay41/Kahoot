@@ -15,6 +15,18 @@ const quizData = [
 				Answer: ["Mercury", "Mars", "Venus", "Sun"],
 				CorrectAnswer: 0,
 			},
+			{
+				Question:
+					"Which planet in our solar system is closest to the sun?",
+				Answer: ["Mercury", "Mars", "Venus", "Sun"],
+				CorrectAnswer: 0,
+			},
+			{
+				Question:
+					"Which planet in our solar system is closest to the sun?",
+				Answer: ["Mercury", "Mars", "Venus", "Sun"],
+				CorrectAnswer: 0,
+			},
 		],
 	},
 	{

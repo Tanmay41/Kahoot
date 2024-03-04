@@ -7,6 +7,8 @@ function Quiz() {
 	const { quizID } = useParams();
 	const [questionIndex, setQuestionIndex] = useState(0);
 	const [marks, setMarks] = useState(0);
+	const [timeTaken, setTimeTaken] = useState([]);
+	const [summary, setSummary] = useState();
 
 	let quizToPresent = {};
 	for (let i = 0; i <= quizData.length - 1; i++) {
@@ -26,12 +28,31 @@ function Quiz() {
 	const onAnswer = (e) => {
 		if (e.target.innerHTML === correctAnswer) {
 			setMarks((prevMarks) => prevMarks + 5);
-		} else if (e.target.innerHTML !== correctAnswer) {
+		} else if (e.target.value === "ShowResult") {
+			showSummary();
+		} else {
 			setMarks((prevMarks) => prevMarks - 3);
 		}
 
 		nextQuestion();
 	};
+
+	function showSummary() {
+		console.log(timeTaken);
+
+		setSummary(
+			timeTaken.map((item, index) => {
+				const data = `${item} on Question no. ${index + 1}`;
+
+				console.log(data);
+
+				return <li key={index}>{data}</li>;
+			})
+		);
+
+		document.getElementById("showResult").classList.add("hidden");
+		document.getElementById("summary").classList.remove("hidden");
+	}
 
 	const optionInputs = options.map((item, index) => {
 		return (
@@ -45,15 +66,24 @@ function Quiz() {
 		);
 	});
 
-	function nextQuestion() {
+	function updateTimeTaken() {
+		const elapsedTimeInputValue =
+			document.getElementById("elapsedTime").value;
+
+		setTimeTaken([...timeTaken, elapsedTimeInputValue]);
+	}
+
+	async function nextQuestion() {
+		updateTimeTaken();
 		if (questionIndex < quizToPresent.Questions.length - 1) {
 			setQuestionIndex((prevQuestionIndex) => prevQuestionIndex + 1);
 		} else {
+			updateTimeTaken();
 			showResult();
 		}
 	}
 
-	function showResult() {
+	async function showResult() {
 		document.getElementById("section").classList.remove("flex");
 		document.getElementById("section").classList.add("hidden");
 
@@ -123,8 +153,17 @@ function Quiz() {
 							You have scored {marks}/
 							{quizToPresent.Questions.length * 5}
 							<p id="comment" className="text-sm text-gray-400">
-								<a href="/">Click Here to go to home page</a>
+								<button
+									id="showResult"
+									value="ShowResult"
+									onClick={onAnswer}
+								>
+									Click Here to show summary
+								</button>
 							</p>
+							<ul id="summary" className="hidden my-7 text-xl">
+								{summary}
+							</ul>
 						</h1>
 					</div>
 				</div>
