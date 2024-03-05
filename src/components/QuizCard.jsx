@@ -3,9 +3,11 @@ import React from "react";
 function QuizCard({ id, Title, Description }) {
 	const action = `/quiz/${id}`;
 
-	const onSubmit = () => {
+	const onSubmit = (e) => {
 		// eslint-disable-next-line no-restricted-globals
-		confirm("Do you want to take this quiz?");
+		if (!confirm("Do you want to take this quiz?")) {
+			e.preventDefault();
+		}
 	};
 
 	return (
