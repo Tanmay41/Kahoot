@@ -27,13 +27,12 @@ function Quiz() {
 
 	const onAnswer = (e) => {
 		if (e.target.innerHTML === correctAnswer) {
-			setMarks((prevMarks) => prevMarks + 5);
+			setMarks((prevMarks) => prevMarks + 4);
 		} else if (e.target.value === "ShowResult") {
 			showSummary();
-		} else {
-			setMarks((prevMarks) => prevMarks - 3);
+		} else if (e.target.innerHTML !== correctAnswer) {
+			setMarks((prevMarks) => prevMarks - 1);
 		}
-
 		nextQuestion();
 	};
 
@@ -147,7 +146,7 @@ function Quiz() {
 					<div className="mx-8 my-5 h-auto w-full flex justify-normal items-center">
 						<h1 className="text-3xl font-bold">
 							You have scored {marks}/
-							{quizToPresent.Questions.length * 5}
+							{quizToPresent.Questions.length * 4}
 							<p id="comment" className="text-sm text-gray-400">
 								<button
 									id="showResult"
