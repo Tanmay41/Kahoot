@@ -5,7 +5,9 @@ function QuizCard({ id, Title, Description }) {
 
 	const onSubmit = (e) => {
 		// eslint-disable-next-line no-restricted-globals
-		if (!confirm("Do you want to take this quiz?")) {
+		var confirmation = confirm("Do you want to take this quiz?");
+
+		if (!confirmation) {
 			e.preventDefault();
 		}
 	};
