@@ -1,3 +1,3 @@
-const apiUrl = "https://kahoot-api-pi.vercel.app/";
+const apiUrl = "https://kahoot-api-zcux.onrender.com/";
 
 export default apiUrl;

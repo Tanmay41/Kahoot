@@ -46,6 +46,32 @@ function Quiz() {
 		nextQuestion();
 	};
 
+	const updateLeaderBoard = async () => {
+		const rank = await showRank({ quizID: quizID });
+
+		console.log(rank);
+
+		setTable(
+			rank.map((item, index) => {
+				return (
+					<tr
+						key={index}
+						className="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600"
+					>
+						<th
+							scope="row"
+							className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+						>
+							{index + 1}
+						</th>
+						<td className="px-6 py-4">{item.username}</td>
+						<td className="px-6 py-4">{item.score}</td>
+					</tr>
+				);
+			})
+		);
+	};
+
 	async function showSummary() {
 		setSummary(
 			timeTaken.map((item, index) => {
@@ -87,6 +113,8 @@ function Quiz() {
 
 		const rank = await showRank({ quizID: quizID });
 
+		console.log(rank);
+
 		setTable(
 			rank.map((item, index) => {
 				return (
@@ -108,6 +136,7 @@ function Quiz() {
 		);
 
 		document.getElementById("table").classList.remove("hidden");
+		document.getElementById("table").classList.add("flex");
 
 		document.getElementById("showResult").classList.add("hidden");
 		document.getElementById("summary").classList.remove("hidden");
@@ -207,8 +236,8 @@ function Quiz() {
 
 					<hr className="mx-auto my-3 h-[2px] w-[90%] bg-gray-500" />
 
-					<div className="mx-8 my-5 h-auto w-full flex justify-normal items-center">
-						<h1 className="text-3xl font-bold">
+					<div className="mx-8 my-5 h-auto w-full flex justify-normal">
+						<h1 className="text-3xl font-bold w-1/2">
 							You have scored {marks}/
 							{quizToPresent.Questions.length * 4}
 							<p id="comment" className="text-sm text-gray-400">
@@ -221,16 +250,19 @@ function Quiz() {
 									your rank
 								</button>
 							</p>
-							<ul id="summary" className="hidden my-7 text-xl">
+							<ul
+								id="summary"
+								className="hidden my-7 mx-auto text-xl"
+							>
 								{summary}
 							</ul>
 						</h1>
 
-						<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
-							<table
-								id="table"
-								className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 hidden"
-							>
+						<div
+							id="table"
+							className="relative overflow-x-auto shadow-md sm:rounded-lg mx-auto justify-between flex-col hidden"
+						>
+							<table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
 								<thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 									<tr>
 										<th scope="col" className="px-6 py-3">
@@ -246,6 +278,12 @@ function Quiz() {
 								</thead>
 								<tbody>{table}</tbody>
 							</table>
+							<button
+								onClick={updateLeaderBoard}
+								className="bg-gray-600 mx-auto rounded text-white"
+							>
+								Update ranks
+							</button>
 						</div>
 					</div>
 				</div>
