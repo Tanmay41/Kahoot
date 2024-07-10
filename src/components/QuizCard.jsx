@@ -13,7 +13,7 @@ function QuizCard({ id, Title, Description }) {
 	};
 
 	return (
-		<form className="lg:w-4/6 lg:mx-auto" action={action}>
+		<form className="lg:w-4/5 lg:mx-auto border border-gray-500 p-5 rounded-xl" action={action}>
 			<h1 className="text-3xl font-bold">{Title}</h1>
 			<p className="mt-5 text-base leading-6 text-gray-500 dark:text-gray-400">
 				{Description}
